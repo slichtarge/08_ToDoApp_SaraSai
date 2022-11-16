@@ -6,7 +6,7 @@ const api_key = "69ed88-c749fc-d73c52-0c5e80-ee5441"
 
 var xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
+ //   if (this.readyState == 4 && this.status == 200) {
         let todo_array = JSON.parse(this.responseText);
         console.log(todo_array);
         console.log(todo_array.length);
@@ -14,8 +14,12 @@ xhttp.onreadystatechange = function() {
             let todo_item = todo_array[x];
             display(todo_item);
         }
-    }
+ //   }
 };
+
+// function getArray(){
+    
+// }
 
 xhttp.open("GET", url, true);
 xhttp.setRequestHeader("Content-type", "application/json");
@@ -148,6 +152,6 @@ function display(todo_item){
 };
 
 
-    // let submitB = document.getElementById("submitNewItem");
-    // submitB.addEventListener("click", addItem());
+    let submitB = document.getElementById("submitNewItem");
+     submitB.addEventListener("submit", addItem());
     
