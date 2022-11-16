@@ -65,10 +65,10 @@ li .deleteButton{
 
 
 /*
-the class "completed" should be added to list items that are completed. It has different properties from the rest of the items.
+the class "complete" should be added to list items that are completed. It has different properties from the rest of the items.
 */
 
-.completed{
+.complete{
     text-decoration:line-through;
 }
 

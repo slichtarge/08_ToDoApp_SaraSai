@@ -24,12 +24,12 @@
 
         <div id="container">
             <ul id="listOfItems">
-                <li class="incomplete"> 
+                <li> 
                     <input class="completeBox" type="checkbox"> 
                     <p>test item 1</p>
                     <input class="deleteButton" type="button" name="deleteButton" value="X">
                 </li>
-                <li class="completed"> 
+                <li class="complete"> 
                     <input class="completeBox" type="checkbox">
                     <p>test item 2</p>
                     <input class="deleteButton" type="button" name="deleteButton" value="X">
@@ -49,8 +49,8 @@
         </div>
 
         <div id="newItem">
-            <h4>Add a new item:</h4>
-            <input id="newItemEnter" type="text" value="">
+            <label for="newItemEnter">Add a new item:</label>
+            <input type = "text" id="newItemEnter" value="" required>
             <input id="submitNewItem" type="submit" value="&#10003">
         </div>
 
