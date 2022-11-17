@@ -2,29 +2,31 @@ let newName;
 let textNewItem;
 let isCompleted;
 let url = "https://cse204.work/todos";
-// const api_key = "69ed88-c749fc-d73c52-0c5e80-ee5441";
-const api_key = "1255d2-62821c-3af470-0927bc-108057";
+const api_key = "69ed88-c749fc-d73c52-0c5e80-ee5441";
+// //const api_key = "1255d2-62821c-3af470-0927bc-108057";
+// //TA tried their key: let key = "dbb9b2-0f72dc-83447c-e32166-a9bef2";
 
-var xhttp = new XMLHttpRequest();
-xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-        let todo_array = JSON.parse(this.responseText);
-        console.log(todo_array);
-        console.log(todo_array.length);
-        for (var x=0; x<todo_array.length; x++){
-            let todo_item = todo_array[x];
-            display(todo_item);
-        }
-    }
-    else{
-        console.log("Failed to connect to server for some reason");
-    }
-};
+// var xhttp = new XMLHttpRequest();
+// xhttp.onreadystatechange = function() {
+//     if (this.readyState == 4 && this.status == 200) {
+//         let todo_array = JSON.parse(this.responseText);
+//         console.log(todo_array);
+//         console.log(todo_array.length);
+//         for (var x=0; x<todo_array.length; x++){
+//             let todo_item = todo_array[x];
+//             display(todo_item);
+//         }
+//     }
+//     else{
+//         console.log("Failed to connect to server for some reason");
+//     }
+// };
 
-xhttp.open("GET", url, true);
-xhttp.setRequestHeader("Content-type", "application/json");
-xhttp.setRequestHeader("x-api-key", api_key);
-xhttp.send();
+// xhttp.open("GET", url, true);
+// // xhttp.setRequestHeader("Content-type", "application/json");
+// xhttp.setRequestHeader("x-api-key", api_key);
+// xhttp.send();
+
 
 
 // function addItem(){
@@ -47,7 +49,7 @@ xhttp.send();
 //             console.log(this.responseText);
 //         }
 //     };
-    
+
 //     xhttp2.open("POST", url, true);
 //     xhttp2.setRequestHeader("Content-type", "application/json");
 //     xhttp2.setRequestHeader("x-api-key",api_key);
@@ -55,43 +57,43 @@ xhttp.send();
 
 // }
 
-// // function updateItem(id_to_complete){
-// //     // Setting variable for ToDo id
-// //     let id = id_to_complete;
-// //     var data = {
-// //         completed: true
-// //     }
+// function updateItem(id_to_complete){
+//     // Setting variable for ToDo id
+//     let id = id_to_complete;
+//     var data = {
+//         completed: true
+//     }
 
-// //     // Initalize AJAX Request
-// //     var xhttp3 = new XMLHttpRequest();
+//     // Initalize AJAX Request
+//     var xhttp3 = new XMLHttpRequest();
 
-// //     // Response handler
-// //     xhttp3.onreadystatechange = function() {
+//     // Response handler
+//     xhttp3.onreadystatechange = function() {
 
-// //         if (this.readyState == 4 && this.status == 200) {
-// //             var todo = JSON.parse(this.responseText);
-// //             console.log(todo);
-// //             element = document.getElementById(id);
-// //             console.log("THE ELEMENT TO CHANGE"+ element)
+//         if (this.readyState == 4 && this.status == 200) {
+//             var todo = JSON.parse(this.responseText);
+//             console.log(todo);
+//             element = document.getElementById(id);
+//             console.log("THE ELEMENT TO CHANGE"+ element)
             
-// //             console.log("its original class"+ element.className) //should be "incomplete"
+//             console.log("its original class"+ element.className) //should be "incomplete"
 
-// //             element.className = ""
-// //             console.log("its now empty class"+ element.className) //should be ""
+//             element.className = ""
+//             console.log("its now empty class"+ element.className) //should be ""
             
-// //             element.className = "complete"
-// //             console.log("its new class"+ element.className) //should be "complete"
-// //         } else if (this.readyState == 4) {
-// //             console.log(this.responseText);
-// //         }
-// //     };
+//             element.className = "complete"
+//             console.log("its new class"+ element.className) //should be "complete"
+//         } else if (this.readyState == 4) {
+//             console.log(this.responseText);
+//         }
+//     };
 
-// //     xhttp3.open("GET", url+"/"+id, true);
+//     xhttp3.open("GET", url+"/"+id, true);
 
-// //     xhttp3.setRequestHeader("Content-type", "application/json");
-// //     xhttp3.setRequestHeader("x-api-key", api_key);
-// //     xhttp3.send(JSON.stringify(data));
-// // }
+//     xhttp3.setRequestHeader("Content-type", "application/json");
+//     xhttp3.setRequestHeader("x-api-key", api_key);
+//     xhttp3.send(JSON.stringify(data));
+// }
 
 // function deleteItem(id_to_delete){
 //     console.log("DELETE IS PRESSED");
@@ -158,5 +160,59 @@ xhttp.send();
 
 
 // let submitB = document.getElementById("submitNewItem");
-// submitB.addEventListener("submit", addItem());
+// submitB.addEventListener("click", addItem());
     
+
+
+var xhttp = new XMLHttpRequest();
+
+xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        var todos = JSON.parse(this.responseText);
+        console.log(todos);
+    }
+};
+
+xhttp.open("GET", url, true);
+xhttp.setRequestHeader("x-api-key",api_key);
+xhttp.send();
+
+function add(){
+// Setting variable for form input (get from HTML form)
+var data = {
+    text: document.getElementById("submitNewItem").value
+}
+// Initalize AJAX Request
+var xhttp2 = new XMLHttpRequest();
+// Response handler
+xhttp2.onreadystatechange = function() {
+    // Wait for readyState = 4 & 200 response
+    if (this.readyState == 4 && this.status == 200) {
+        // parse JSON response
+        var todo = JSON.parse(this.responseText);
+        console.log(todo);
+    } else if (this.readyState == 4) {
+        // this.status !== 200, error from server
+        console.log(this.responseText);
+    }
+};
+xhttp2.open("POST", "https://cse204.work/todos", true);
+
+xhttp2.setRequestHeader("Content-type", "application/json");
+xhttp2.setRequestHeader("x-api-key", api_key);
+xhttp2.send(JSON.stringify(data));
+}
+
+function update (event){
+console.log(event);
+//read the event for the parent id. Look in console to fin this information
+}
+
+
+
+
+let checks = document.getElementsByClassName("completeBox");
+
+for(let element of checks) {
+   element.addEventListener("click", update);
+};
