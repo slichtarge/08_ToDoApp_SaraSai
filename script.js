@@ -9,17 +9,11 @@ const api_key = "69ed88-c749fc-d73c52-0c5e80-ee5441";
 var xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-        console.log("server connected")
         let todo_array = JSON.parse(this.responseText);
-        console.log(todo_array);
-        console.log(todo_array.length);
         for (var x=0; x<todo_array.length; x++){
             let todo_item = todo_array[x];
             display(todo_item);
         }
-    }
-    else{
-        console.log("server NOT connected");
     }
 };
 
@@ -30,7 +24,6 @@ xhttp.send();
 
 
 function addItem(){
-    console.log("THE TODO WE ARE ADDING" + document.getElementById("newItemEnter").value);
     var data = {
         text: document.getElementById("newItemEnter").value
     }
@@ -41,7 +34,6 @@ function addItem(){
     xhttp2.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             var todo = JSON.parse(this.responseText);
-            console.log(todo);
             display(todo);
             document.getElementById("newItemEnter").value = ""
         }
@@ -63,13 +55,11 @@ function updateItem(id_to_complete){
     checkbox = document.getElementsByClassName(id)[0]
     let checked = new Boolean(checkbox.checked)
     if (checked == true){
-        console.log("the boolean is TRUE, box has been checked");
         var data = {
             completed: true
         }
     }
     else{
-        console.log("the boolean is FALSE, box has been unchecked");
         var data = {
             completed: false
         }
@@ -88,11 +78,9 @@ function updateItem(id_to_complete){
             element.className = "";
             if(checked == true){
                 element.className = "complete";
-                console.log("the element's class is now COMPLETE");
             }
             else{
                 element.className = "incomplete"
-                console.log("the element's class is now INCOMPLETE");
             }
         } else if (this.readyState == 4) {
             console.log(this.responseText);
@@ -107,27 +95,18 @@ function updateItem(id_to_complete){
 }
 
 function deleteItem(id_to_delete){
-    console.log("DELETE IS PRESSED");
     let id = id_to_delete;
-    console.log("the id to delete " + id)
 
     let xhttp4 = new XMLHttpRequest();
     xhttp4.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             let list = document.getElementById("listOfItems");
-            console.log("list: " +  list);
             let item = document.getElementById(id);
-            console.log("item: " +  item);
             list.removeChild(item);
-        }
-        else if(this.readyState == 4){
-            console.log("fuck me");
         }
     };
 
-    console.log("preflight");
     xhttp4.open("DELETE", url+"/"+id, true);
-    console.log("flown");
     xhttp4.setRequestHeader("Content-type", "application/json");
     xhttp4.setRequestHeader("x-api-key", api_key);
     xhttp4.send();
@@ -139,10 +118,8 @@ function display(todo_item){
     let li = document.createElement("li");
     let checkBox = document.createElement("INPUT");
     checkBox.setAttribute("type", "checkbox")
-    // checkBox.className ="completeBox"
     checkBox.className = todo_item.id
     checkBox.checked = todo_item.completed;
-    console.log("this item has been checked: "+todo_item.completed);
     
     if(todo_item.completed){
         li.className = "complete";
@@ -179,79 +156,3 @@ function display(todo_item){
 
 let submitB = document.getElementById("submitNewItem");
 submitB.addEventListener("click", function(event){addItem()});
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//SAI'S NEW CODE
-
-// var xhttp = new XMLHttpRequest();
-
-// xhttp.onreadystatechange = function() {
-//     if (this.readyState == 4 && this.status == 200) {
-//         console.log("server connected")
-//         var todos = JSON.parse(this.responseText);
-//         console.log(todos);
-//     }
-//     else{
-//         console.log("error connecting to server")
-//     }
-// };
-
-// xhttp.open("GET", url, true);
-// xhttp.setRequestHeader("x-api-key",api_key);
-// xhttp.send();
-
-// function add(){
-//     // Setting variable for form input (get from HTML form)
-//     var data = {
-//         text: document.getElementById("submitNewItem").value
-//     }
-//     // Initalize AJAX Request
-//     var xhttp2 = new XMLHttpRequest();
-//     // Response handler
-//     xhttp2.onreadystatechange = function() {
-//         // Wait for readyState = 4 & 200 response
-//         if (this.readyState == 4 && this.status == 200) {
-//             // parse JSON response
-//             var todo = JSON.parse(this.responseText);
-//             console.log(todo);
-//         } else if (this.readyState == 4) {
-//             // this.status !== 200, error from server
-//             console.log(this.responseText);
-//         }
-//     };
-//     xhttp2.open("POST", "https://cse204.work/todos", true);
-
-//     xhttp2.setRequestHeader("Content-type", "application/json");
-//     xhttp2.setRequestHeader("x-api-key", api_key);
-//     xhttp2.send(JSON.stringify(data));
-// }
-
-// function update (event){
-// console.log(event);
-// //read the event for the parent id. Look in console to fin this information
-// }
-
-
-
-
-// let checks = document.getElementsByClassName("completeBox");
-
-// for(let element of checks) {
-//    element.addEventListener("click", update);
-// };
