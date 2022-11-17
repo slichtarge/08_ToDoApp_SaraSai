@@ -153,6 +153,16 @@ function display(todo_item){
     
 };
 
+function enter(event){
+    console.log("enter");
+    if(event.key == "Enter"){
+        addItem();
+    }
+}
+
+
 
 let submitB = document.getElementById("submitNewItem");
 submitB.addEventListener("click", function(event){addItem()});
+document.addEventListener("keypress", function(event){enter(event)});
+

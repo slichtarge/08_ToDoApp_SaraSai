@@ -62,7 +62,7 @@ li:hover{
 li .deleteButton{
     float: right;
     position: relative;
-    top:-50px;
+    top:-55px;
 }
 
 
@@ -95,4 +95,60 @@ The class "incomplete should be added to list items automatically just as a refe
 }
 #newItemEnter{
     width: 50%;
+}
+
+button{
+    background-color:beige;
+}
+button:hover{
+    background-color: chartreuse;
+}
+
+.deleteButton{
+    border-radius: 40%;
+}
+
+.deleteButton:hover{
+    background-color:red;
+}
+input[type=checkbox] {
+    transform: scale(1.5);
+    margin-top: 10px;
+}
+li p{
+    margin-top: 15px;
+}
+
+
+
+@media screen and (max-device-width:600px) {
+    li{
+        font-size: 35pt;
+        padding-bottom: 20px;
+        padding-top: 20px;
+    }
+    li .deleteButton{
+        top: -100px;
+    }
+    .headerstuff h1{
+        font-size: 70px;   
+    }
+    .top h3{
+        font-size: 60px;
+    }
+    #newItem label{
+        font-size: 30px;
+    }
+    #newItem button{
+        font-size: 30px;
+        margin-right: -70px;
+    }
+    input[type=checkbox] {
+        transform: scale(3);
+        margin-top: 30px;
+
+    }
+    #newItem{
+        font-size: 20pt;
+    }
 }
